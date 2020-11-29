@@ -5,16 +5,22 @@ import com.test.sportradarlib.dto.MatchDTO
 import com.test.sportradarlib.dto.TeamDTO
 import com.test.sportradarlib.event.MatchEvent
 import com.test.sportradarlib.fixtures.EventPublisher
+import com.test.sportradarlib.service.SummaryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 import spock.lang.Unroll
+
+import javax.xml.crypto.Data
 
 @SpringBootTest
 class LiveScoreBoardSpec extends Specification {
 
     @Autowired
     EventPublisher eventPublisher
+
+    @Autowired
+    SummaryService summaryService
 
     def setup() {
         DataStore.matches.forEach({it -> DataStore.endMatch(it)})
@@ -70,11 +76,16 @@ class LiveScoreBoardSpec extends Specification {
         "Portugal-Colombia" | "Portugal" | "Colombia"
     }
 
-    @Unroll
     void 'should return the summary'() {
         given: 'a previously sent events'
+        def match1 = buildMatch("Spain", "France")
+        def match2 = buildMatch("Italy", "Germany")
+        eventPublisher.publishEvent(buildEvent("start", match1))
+        eventPublisher.publishEvent(buildEvent("start", match2))
         when: 'a call to the summary service is made'
+        def response = summaryService.getSummary()
         then: 'it should return the matches ordered by the most recently added'
+        response == DataStore.getMatches()
     }
 
     static def buildMatch(String homeTeam, String awayTeam) {
