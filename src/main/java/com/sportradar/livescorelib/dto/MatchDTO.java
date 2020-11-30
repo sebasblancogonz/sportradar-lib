@@ -1,4 +1,4 @@
-package com.test.sportradarlib.dto;
+package com.sportradar.livescorelib.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

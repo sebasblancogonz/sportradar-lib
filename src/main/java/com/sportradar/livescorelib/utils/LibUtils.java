@@ -1,6 +1,6 @@
-package com.test.sportradarlib.utils;
+package com.sportradar.livescorelib.utils;
 
-import com.test.sportradarlib.dto.MatchDTO;
+import com.sportradar.livescorelib.dto.MatchDTO;
 import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;

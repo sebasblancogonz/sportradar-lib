@@ -1,17 +1,15 @@
-package com.test.sportradarlib
+package com.sportradar.livescorelib
 
-import com.test.sportradarlib.data.DataStore
-import com.test.sportradarlib.dto.MatchDTO
-import com.test.sportradarlib.dto.TeamDTO
-import com.test.sportradarlib.event.MatchEvent
-import com.test.sportradarlib.fixtures.EventPublisher
-import com.test.sportradarlib.service.SummaryService
+import com.sportradar.livescorelib.data.DataStore
+import com.sportradar.livescorelib.dto.MatchDTO
+import com.sportradar.livescorelib.dto.TeamDTO
+import com.sportradar.livescorelib.event.MatchEvent
+import com.sportradar.livescorelib.fixtures.EventPublisher
+import com.sportradar.livescorelib.service.SummaryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 import spock.lang.Unroll
-
-import javax.xml.crypto.Data
 
 @SpringBootTest
 class LiveScoreBoardSpec extends Specification {
@@ -23,7 +21,7 @@ class LiveScoreBoardSpec extends Specification {
     SummaryService summaryService
 
     def setup() {
-        DataStore.matches.forEach({it -> DataStore.endMatch(it)})
+        DataStore.matches.forEach({ it -> DataStore.endMatch(it)})
     }
 
     @Unroll

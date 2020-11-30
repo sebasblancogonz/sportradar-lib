@@ -1,25 +1,25 @@
-package com.test.sportradarlib.data;
+package com.sportradar.livescorelib.data;
 
-import com.test.sportradarlib.dto.MatchDTO;
+import com.sportradar.livescorelib.dto.MatchDTO;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
-import static com.test.sportradarlib.utils.LibUtils.checkMatch;
-import static com.test.sportradarlib.utils.LibUtils.extractId;
+import static com.sportradar.livescorelib.utils.LibUtils.checkMatch;
+import static com.sportradar.livescorelib.utils.LibUtils.extractId;
 
 @Slf4j
 @UtilityClass
 public class DataStore {
 
-    private static final LinkedHashMap<String, MatchDTO> matches = new LinkedHashMap<>();
+    private final LinkedHashMap<String, MatchDTO> matches = new LinkedHashMap<>();
 
-    public static void addMatch(MatchDTO match) {
+    public void addMatch(MatchDTO match) {
         matches.put(extractId(match), match);
     }
 
-    public static void updateMatch(MatchDTO match) {
+    public void updateMatch(MatchDTO match) {
         if (checkMatch(match, matches)) {
             matches.replace(extractId(match), match);
         } else {
@@ -27,7 +27,7 @@ public class DataStore {
         }
     }
 
-    public static void endMatch(MatchDTO matchDTO) {
+    public void endMatch(MatchDTO matchDTO) {
         if (checkMatch(matchDTO, matches)) {
             matches.remove(extractId(matchDTO));
         } else {
@@ -35,7 +35,7 @@ public class DataStore {
         }
     }
 
-    public static LinkedList<MatchDTO> getMatches () {
+    public LinkedList<MatchDTO> getMatches () {
         LinkedList<MatchDTO> matchList = new LinkedList<>();
         matches.forEach((s, matchDTO) -> matchList.add(matchDTO));
         return matchList;

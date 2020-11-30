@@ -1,11 +1,11 @@
-package com.test.sportradarlib.listener;
+package com.sportradar.livescorelib.listener;
 
-import com.test.sportradarlib.event.MatchEvent;
+import com.sportradar.livescorelib.event.MatchEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import static com.test.sportradarlib.data.DataStore.*;
+import static com.sportradar.livescorelib.data.DataStore.*;
 
 @Slf4j
 @Component
