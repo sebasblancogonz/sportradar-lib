@@ -3,8 +3,11 @@ package com.sportradar.livescorelib.data;
 import com.sportradar.livescorelib.dto.MatchDTO;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.List;
 
 import static com.sportradar.livescorelib.utils.LibUtils.checkMatch;
 import static com.sportradar.livescorelib.utils.LibUtils.extractId;
@@ -35,9 +38,9 @@ public class DataStore {
         }
     }
 
-    public LinkedList<MatchDTO> getMatches () {
-        LinkedList<MatchDTO> matchList = new LinkedList<>();
-        matches.forEach((s, matchDTO) -> matchList.add(matchDTO));
+    public List<MatchDTO> getMatches() {
+        List<MatchDTO> matchList = new ArrayList<>(matches.values());
+        Collections.reverse(matchList);
         return matchList;
     }
 
