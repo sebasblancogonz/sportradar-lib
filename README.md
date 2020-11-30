@@ -39,3 +39,10 @@ LinkedLists.
 
 To run the tests simply execute this in the project's folder:
 ``gradlew clean test -i``
+
+## DTOs structure
+
+| MatchEvent    | MatchDTO           | TeamDTO      |
+| :----:        | :----:             | :----:       |
+| String (name) | TeamDTO (homeTeam) | String (name)|
+| MatchDTO      | TeamDTO (awayTeam) | int (score)  |

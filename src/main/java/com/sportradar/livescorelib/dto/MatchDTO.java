@@ -15,6 +15,4 @@ public class MatchDTO {
 
     private TeamDTO awayTeam;
 
-    private boolean onCourse;
-
 }
